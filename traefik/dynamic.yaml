@@ -1,0 +1,12 @@
+http:
+  routers:
+    my-http-router:
+      rule: "HostRegexp(`.*`)"
+      service: mitmproxy
+      entryPoints:
+        - web
+  services:
+    mitmproxy:
+      loadBalancer:
+        servers:
+          - url: "http://mitmproxy"

@@ -1,4 +1,13 @@
 services:
+  traefik:
+    image: traefik:v3.0.1
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik/dynamic.yaml:/dynamic.yaml
+      - ./traefik/traefik.yaml:/etc/traefik/traefik.yaml
   mitmproxy:
     image: mitmproxy/mitmproxy
     command: mitmdump -v
