@@ -3,8 +3,19 @@ http:
     my-http-router:
       rule: "HostRegexp(`.*`)"
       service: mitmproxy
+      middlewares:
+        - my-htransformation
       entryPoints:
         - web
+  middlewares:
+    my-htransformation:
+      plugin:
+        htransformation:
+          Rules:
+            - Header: Example
+              Type: RewriteValueRule
+              Value: "(.*)input(.*)"
+              ValueReplace: "$1output$2"
   services:
     mitmproxy:
       loadBalancer:

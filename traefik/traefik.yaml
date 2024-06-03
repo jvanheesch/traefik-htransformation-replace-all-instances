@@ -6,3 +6,8 @@ entrypoints:
 providers:
   file:
     filename: /dynamic.yaml
+experimental:
+  plugins:
+    htransformation:
+      modulename: "github.com/tomMoulard/htransformation"
+      version: "v0.3.0"
